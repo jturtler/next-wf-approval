@@ -1,0 +1,111 @@
+[
+	{
+	  "id": "data-001",
+	  "title": "TEST - Data Set 5 Default",
+	  "period": "2024-Q1",
+	  "location": "loc-001",
+	  "value": 100,
+	  "status": "readyForApproval",
+	  "disaggregations": [
+		 { "name": "agent-001", "value": 60 },
+		 { "name": "prod-001", "value": 40 }
+	  ]
+	},
+	{
+	  "id": "data-002",
+	  "title": "TEST - Data Set 4",
+	  "period": "2024-Q1",
+	  "location": "loc-001",
+	  "value": 300,
+	  "status": "approved",
+	  "disaggregations": [
+		 { "name": "agent-001", "value": 100 },
+		 { "name": "prod-001", "value": 200 }
+	  ]
+	},
+	{
+	  "id": "data-003",
+	  "title": "TEST - Data Set 3",
+	  "period": "2024-Q2",
+	  "location": "loc-002",
+	  "value": 150,
+	  "status": "approvedAndAccepted",
+	  "disaggregations": [
+		 { "name": "agent-002", "value": 90 },
+		 { "name": "prod-002", "value": 60 }
+	  ]
+	},
+	{
+	  "id": "data-004",
+	  "title": "TEST - Data Set 2",
+	  "period": "2024-Q2",
+	  "location": "loc-003",
+	  "value": 250,
+	  "status": "readyForApproval",
+	  "disaggregations": [
+		 { "name": "agent-003", "value": 120 },
+		 { "name": "prod-003", "value": 130 }
+	  ]
+	},
+	{
+	  "id": "data-005",
+	  "title": "TEST - Data Set 1",
+	  "period": "2024-Q3",
+	  "location": "loc-004",
+	  "value": 400,
+	  "status": "approved",
+	  "disaggregations": [
+		 { "name": "agent-004", "value": 200 },
+		 { "name": "prod-004", "value": 200 }
+	  ]
+	},
+	{
+	  "id": "data-006",
+	  "title": "TEST - Data Set 6",
+	  "period": "2024-Q4",
+	  "location": "loc-001",
+	  "value": 180,
+	  "status": "readyForApproval",
+	  "disaggregations": [
+		 { "name": "agent-001", "value": 90 },
+		 { "name": "prod-002", "value": 90 }
+	  ]
+	},
+	{
+	  "id": "data-007",
+	  "title": "TEST - Data Set 7",
+	  "period": "2024-Q4",
+	  "location": "loc-002",
+	  "value": 500,
+	  "status": "approvedAndAccepted",
+	  "disaggregations": [
+		 { "name": "agent-002", "value": 250 },
+		 { "name": "prod-003", "value": 250 }
+	  ]
+	},
+	{
+	  "id": "data-008",
+	  "title": "TEST - Data Set 8",
+	  "period": "2024-Q1",
+	  "location": "loc-003",
+	  "value": 275,
+	  "status": "approved",
+	  "disaggregations": [
+		 { "name": "agent-003", "value": 150 },
+		 { "name": "prod-004", "value": 125 }
+	  ]
+	},
+	{
+	  "id": "data-009",
+	  "title": "TEST - Data Set 9",
+	  "period": "2024-Q2",
+	  "location": "loc-004",
+	  "value": 320,
+	  "status": "readyForApproval",
+	  "disaggregations": [
+		 { "name": "agent-004", "value": 170 },
+		 { "name": "prod-001", "value": 150 }
+	  ]
+	}
+]
+ 
