@@ -112,7 +112,7 @@ const dropdownSlice = createSlice({
   },
 });
 
-
+/*
 const displayDataSlice = createSlice({
   name: "displayData",
   initialState: initialState_DisplayData,
@@ -122,9 +122,10 @@ const displayDataSlice = createSlice({
     },
   },
 });
+*/
 
 export const { setPeriods, setLocations, setSelectedPeriod, setSelectedLocation, clearSelections, toggleDataEntry } = dropdownSlice.actions;
-export const { setDisplayData } = displayDataSlice.actions;
+//export const { setDisplayData } = displayDataSlice.actions;
 export const dropdownReducer = dropdownSlice.reducer;
 
 // ------------------
@@ -132,7 +133,7 @@ export const dropdownReducer = dropdownSlice.reducer;
 export const store = configureStore({
   reducer: {
     dropdowns: dropdownSlice.reducer,
-    displayData: displayDataSlice.reducer,
+//    displayData: displayDataSlice.reducer,
     data: dataSlice.reducer,
   },
 });

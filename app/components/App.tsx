@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setPeriods } from "../redux/store";
+import { setPeriods, setLocations, setItems } from "../redux/store";
 
 import Footer from "./Footer";
 import Header from "./Header";
@@ -16,8 +16,14 @@ export default function App() {
     async function fetchData() {
       try {
         const periodsJson = await (await fetch("/data/periods.json")).json();
-        dispatch(setPeriods(periodsJson));
+        const locationsJson = await (await fetch("/data/locations.json")).json();
+        const dataJson = await (await fetch("/data/data.json")).json();
 
+        console.log( "dataJson", dataJson );
+
+        dispatch(setPeriods(periodsJson));
+        dispatch(setLocations(locationsJson));
+        dispatch(setItems(dataJson));
       } catch (error) {
         console.error("Error fetching periodData:", error);
       }
