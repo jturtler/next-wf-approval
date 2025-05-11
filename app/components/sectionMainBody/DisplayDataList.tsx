@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { RootState, setSelectedItems } from "../../redux/store";
+import { RootState, setSelectedItemId } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function DisplayDataList() {
@@ -7,7 +7,7 @@ export default function DisplayDataList() {
 	const dispatch = useDispatch();
 	const selectedLocation = useSelector((state: RootState) => state.dropdowns.selectedLocation);
 	const selectedPeriod = useSelector((state: RootState) => state.dropdowns.selectedPeriod);
-	const { items, selectedItemIds } = useSelector((state: RootState) => state.data);
+	const { items, selectedItemId } = useSelector((state: RootState) => state.data);
 
 	const [filtedItems, setFilteredItems] = useState<any[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
@@ -47,7 +47,7 @@ export default function DisplayDataList() {
 
 	const handleSelection = (itemId: string) => {
 		//setSelectedItem(itemId); // Set the selected item
-		dispatch(setSelectedItems([itemId])); // Dispatch the approved items to the Redux store
+		dispatch(setSelectedItemId(itemId)); // Dispatch the approved items to the Redux store
 	}
 
 	return (
@@ -60,7 +60,7 @@ export default function DisplayDataList() {
 				) : (
 					filtedItems.map((item: any) => (
 						<div key={item.id}
-							className={`flex item-center border rounded-md p-2 cursor-pointer ${selectedItemIds.includes(item.id) ? "bg-blue-100 border-blue-500" : ""
+							className={`flex item-center border rounded-md p-2 cursor-pointer ${selectedItemId === item.id ? "bg-blue-100 border-blue-500" : ""
 								}`}
 							onClick={() => handleSelection(item.id)} // Handle click to select the item
 
@@ -69,7 +69,7 @@ export default function DisplayDataList() {
 							<input
 								type="radio"
 								className="mr-2"
-								checked={selectedItemIds.includes(item.id)}
+								checked={selectedItemId === item.id}
 								readOnly
 								aria-label={`Select ${item.title}`}
 							/>

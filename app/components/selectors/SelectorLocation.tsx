@@ -1,7 +1,7 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, setSelectedItems, setSelectedLocation } from "../../redux/store";
+import { RootState, setSelectedItemId, setSelectedLocation } from "../../redux/store";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 export default function SelectorLocation() {
@@ -12,12 +12,12 @@ export default function SelectorLocation() {
 
   const onChangeLocation = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setSelectedLocation(e.target.value));
-    dispatch(setSelectedItems([])); // Clear selected items when location changes
+    dispatch(setSelectedItemId("")); // Clear selected items when location changes
   }
 
   const clearSelection = () => {
     dispatch(setSelectedLocation(""));
-    dispatch(setSelectedItems([])); // Clear selected items when location changes
+    dispatch(setSelectedItemId("")); // Clear selected items when location changes
   };
 
   return (

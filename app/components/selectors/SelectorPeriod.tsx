@@ -1,7 +1,7 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, setSelectedItems, setSelectedPeriod } from "../../redux/store";
+import { RootState, setSelectedItemId, setSelectedPeriod } from "../../redux/store";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 export default function SelectorPeriod() {
@@ -12,12 +12,12 @@ export default function SelectorPeriod() {
 
   const onChangePeriod = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setSelectedPeriod(e.target.value));
-    dispatch(setSelectedItems([])); // Clear selected items when location changes
+    dispatch(setSelectedItemId("")); // Clear selected items when location changes
   }
 
   const clearSelection = () => {
     dispatch(setSelectedPeriod(""));
-    dispatch(setSelectedItems([])); // Clear selected items when location changes
+    dispatch(setSelectedItemId("")); // Clear selected items when location changes
   };
 
   return (
