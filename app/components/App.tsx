@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setPeriods, setLocations, setItems } from "../redux/store";
 
-import Footer from "./Footer";
-import Header from "./Header";
-import MainBody from "./MainBody";
+import Footer from "./sectionFooter/Footer";
+import Header from "./sectionHeader/Header";
+import MainBody from "./sectionMainBody/MainBody";
 
 export default function App() {
 

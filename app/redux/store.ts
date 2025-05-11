@@ -17,14 +17,14 @@ export interface DataItem {
 
 interface DataState {
   items: DataItem[];
-  selectedItems: DataItem[];
+  selectedItemIds: string[];
   loading: boolean;
   error: string | null;
 }
 
 const initialState_DataItem: DataState = {
   items: [],
-  selectedItems: [],
+  selectedItemIds: [],
   loading: false,
   error: null,
 };
@@ -48,8 +48,8 @@ const dataSlice = createSlice({
     removeItem: (state, action: PayloadAction<DataItem>) => {
       state.items = state.items.filter(item => item.id !== action.payload.id);
     },
-    selectedItems: (state, action: PayloadAction<DataItem[]>) => {
-      state.selectedItems = action.payload;
+    setSelectedItems: (state, action: PayloadAction<string[]>) => {
+      state.selectedItemIds = action.payload;
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
@@ -60,7 +60,7 @@ const dataSlice = createSlice({
   },
 });
 
-export const { setItems, addItem, updateItem, removeItem, selectedItems, setLoading, setError } = dataSlice.actions;
+export const { setItems, addItem, updateItem, removeItem, setSelectedItems, setLoading, setError } = dataSlice.actions;
 export const dataReducer = dataSlice.reducer;
 
 // ------------------------------------------
@@ -74,9 +74,9 @@ interface DropdownState {
 }
 
 // Obsolete One
-interface DisplayDataState {
-  displayData: any | null;
-}
+//interface DisplayDataState {
+//  displayData: any | null;
+//}
 
 // QUESTION: Does combining all dropdown related states into one slice make sense?
 const initialState: DropdownState = {
