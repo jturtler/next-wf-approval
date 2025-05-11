@@ -1,0 +1,61 @@
+{
+	"statusList": [
+		{
+			"status": "readyForApproval",
+			"label": "Ready for Approval",
+			"color": "#FFCC00",
+			"nextStatus": [
+				"approved",
+				"rejected",
+				"cancelled"
+			]
+		},
+		{
+			"status": "approved",
+			"label": "Approved",
+			"color": "#00CC00",
+			"nextStatus": [
+				"approvedAndAccepted",
+				"rejected",
+				"cancelled"
+			]
+		},
+		{
+			"status": "approvedAndAccepted",
+			"label": "Approved and Accepted",
+			"color": "#00CC00",
+			"nextStatus": [
+				"rejected",
+				"cancelled"
+			]
+		},
+		{
+			"status": "rejected",
+			"label": "Rejected",
+			"color": "#FF0000",
+			"nextStatus": [
+				"readyForApproval",
+				"cancelled"
+			]
+		},
+		{
+			"status": "cancelled",
+			"label": "Cancelled",
+			"color": "#FF0000",
+			"nextStatus": [
+				"readyForApproval",
+				"rejected"
+			]
+		},
+		{
+			"status": "pending",
+			"label": "Pending",
+			"color": "#CCCCCC",
+			"nextStatus": [
+				"approved",
+				"rejected",
+				"cancelled"
+			]
+		}
+	]
+}

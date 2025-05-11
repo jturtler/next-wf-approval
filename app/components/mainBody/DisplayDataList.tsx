@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 
-
 export default function DisplayDataList() {
 
 	const selectedLocation = useSelector((state: RootState) => state.dropdowns.selectedLocation);
@@ -11,6 +10,7 @@ export default function DisplayDataList() {
 
 	const [filtedItems, setFilteredItems] = useState<any[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
+	const [approvedItems, setApprovedItems] = useState<string[]>([]); // State for approved items
 
 	useEffect(() => {
 		const filterData = async () => {
@@ -21,8 +21,6 @@ export default function DisplayDataList() {
 					setIsLoading(false);
 
 					const filteredItems = items.filter((item: any) => item.period === selectedPeriod && item.location === selectedLocation);
-
-					console.log("filteredItems", filteredItems);
 
 					setFilteredItems(filteredItems || []);  // filter it?
 				}, 1500);
@@ -38,6 +36,13 @@ export default function DisplayDataList() {
 
 	}, [selectedPeriod, selectedLocation]);
 
+	const toggleApproval = (itemId: string) => {
+		setApprovedItems((prev) =>
+		  prev.includes(itemId)
+			 ? prev.filter((id) => id !== itemId) // Remove if already approved
+			 : [...prev, itemId] // Add if not approved
+		);
+	 };
 
 	return (
 		<div className="">
@@ -49,7 +54,17 @@ export default function DisplayDataList() {
 				) : (
 					filtedItems.map((item: any) => (
 						<div key={item.id} className="py-2">
-							<div className="p-1 font-semibold">{item.title}</div>
+							<div className="flex">
+								<div className="p-1 font-semibold">{item.title}</div>
+								<div className="text-sm text-gray-500 mt-1 ml-1 italic">[{item.status}]</div>
+								<input
+									type="checkbox"
+									className="ml-2"
+									checked={approvedItems.includes(item.id)}
+									onChange={() => toggleApproval(item.id)}
+									aria-label={`Approve ${item.title}`}
+								/>
+							</div>
 							<table className=" border border-gray-300 text-sm">
 								<thead>
 									<tr className="bg-gray-100">
@@ -60,7 +75,6 @@ export default function DisplayDataList() {
 								<tbody>
 									{
 										item.disaggregations.map((dgItem: any) => (
-
 											<tr key={dgItem.name} className="border border-gray-300">
 												<td className="p-2">{dgItem.name}</td>
 												<td className="p-2">{dgItem.value}</td>

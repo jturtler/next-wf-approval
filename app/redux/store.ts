@@ -17,12 +17,14 @@ export interface DataItem {
 
 interface DataState {
   items: DataItem[];
+  selectedItems: DataItem[];
   loading: boolean;
   error: string | null;
 }
 
 const initialState_DataItem: DataState = {
   items: [],
+  selectedItems: [],
   loading: false,
   error: null,
 };
@@ -46,16 +48,19 @@ const dataSlice = createSlice({
     removeItem: (state, action: PayloadAction<DataItem>) => {
       state.items = state.items.filter(item => item.id !== action.payload.id);
     },
+    selectedItems: (state, action: PayloadAction<DataItem[]>) => {
+      state.selectedItems = action.payload;
+    },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
     setError: (state, action: PayloadAction<string | null>) => {
       state.error = action.payload;
-    }    
+    }
   },
 });
 
-export const { setItems, addItem, updateItem, removeItem, setLoading, setError } = dataSlice.actions;
+export const { setItems, addItem, updateItem, removeItem, selectedItems, setLoading, setError } = dataSlice.actions;
 export const dataReducer = dataSlice.reducer;
 
 // ------------------------------------------
@@ -82,9 +87,9 @@ const initialState: DropdownState = {
   isDataEntry: false,  // Add this new state  
 };
 
-const initialState_DisplayData: DisplayDataState = {
-  displayData: null,
-};
+//const initialState_DisplayData: DisplayDataState = {
+//  displayData: null,
+//};
 
 const dropdownSlice = createSlice({
   name: "dropdowns",
