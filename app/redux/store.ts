@@ -43,7 +43,7 @@ const dataSlice = createSlice({
       //const index = state.items.findIndex(item => item.id === action.payload.id);
       // if (index !== -1) { state.items[index] = action.payload; }
       
-      console.log("Update Item: ", action.payload);
+      // console.log("Update Item: ", action.payload);
 
       state.items = state.items.map(item => {
         if (item.id === action.payload.id) {
@@ -52,9 +52,9 @@ const dataSlice = createSlice({
         return item;
       });
 
-      state.items = JSON.parse(JSON.stringify(state.items)); // Deep copy to avoid mutation issues
+      /// state.items = JSON.parse(JSON.stringify(state.items)); // Deep copy to avoid mutation issues
 
-      console.log("Updated Items: ", state.items);
+      // console.log("Updated Items: ", state.items);
     },
     removeItem: (state, action: PayloadAction<DataItem>) => {
       state.items = state.items.filter(item => item.id !== action.payload.id);

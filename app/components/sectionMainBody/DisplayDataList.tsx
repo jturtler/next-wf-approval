@@ -9,10 +9,8 @@ export default function DisplayDataList() {
 	const selectedPeriod = useSelector((state: RootState) => state.dropdowns.selectedPeriod);
 	const { items, selectedItemId } = useSelector((state: RootState) => state.data);
 
-	const [filtedItems, setFilteredItems] = useState<any[]>([]);
+	const [filteredItemIdArr, setFilteredItemIdArr] = useState<any[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
-	//const [approvedItems, setApprovedItems] = useState<string[]>([]); // State for approved items
-	//const [selectedItem, setSelectedItem] = useState<string | null>(null); // State for selected item
 
 	useEffect(() => {
 		const filterData = async () => {
@@ -22,9 +20,10 @@ export default function DisplayDataList() {
 				setTimeout(() => {
 					setIsLoading(false);
 
-					const filteredItems = items.filter((item: any) => item.period === selectedPeriod && item.location === selectedLocation);
+					const filteredIdArr = items.filter((item: any) => item.period === selectedPeriod && item.location === selectedLocation)
+						.map((item: any) => item.id); // Filter the items based on selected period and location
 
-					setFilteredItems(filteredItems || []);  // filter it?
+					setFilteredItemIdArr(filteredIdArr || []);  // filter it?
 				}, 1100);
 
 			} catch (err) {
@@ -34,19 +33,15 @@ export default function DisplayDataList() {
 		};
 
 		if (selectedPeriod && selectedLocation) filterData();
-		else setFilteredItems([]);
+		else setFilteredItemIdArr([]);
 
-	}, [selectedPeriod, selectedLocation]);
+	}, [selectedPeriod, selectedLocation]); // , items]
 
-	/*
-	const toggleApproval = (itemId: string) => {
-		const selectedItems = selectedItemIds.includes(itemId) ? selectedItemIds.filter((id: string) => id !== itemId)	: [...selectedItemIds, itemId]; // Add if not approved			
-		dispatch(setSelectedItems( selectedItems )); // Dispatch the approved items to the Redux store
-		//setApprovedItems((prev) => prev.includes(itemId) ? prev.filter((id) => id !== itemId) : [...prev, itemId] );
-	 };*/
+	// TODO: Create Components for each item, and as each item gets changed,
+	// the component will rerender only that item, not the whole list.
+
 
 	const handleSelection = (itemId: string) => {
-		//setSelectedItem(itemId); // Set the selected item
 		dispatch(setSelectedItemId(itemId)); // Dispatch the approved items to the Redux store
 	}
 
@@ -58,7 +53,12 @@ export default function DisplayDataList() {
 						<div className="w-10 h-10 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
 					</div>
 				) : (
-					filtedItems.map((item: any) => (
+					filteredItemIdArr.map((itemId: string) => {
+
+						const item = items.find((item: any) => item.id === itemId); // Find the item by ID
+						if (!item) return null; // If item not found, skip rendering
+
+						return (
 						<div key={item.id}
 							className={`flex item-center border rounded-md p-2 cursor-pointer ${selectedItemId === item.id ? "bg-blue-100 border-blue-500" : ""
 								}`}
@@ -99,7 +99,8 @@ export default function DisplayDataList() {
 								</table>
 							</div>
 						</div>
-					))
+					)}
+				)
 				)
 			}
 		</div>
