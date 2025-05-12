@@ -11,7 +11,7 @@ export interface DataItem {
   period: string;
   location: string;
   value: number;
-  status: 'draft' | 'readyForApproval' | 'approved' | 'rejected';
+  status: string; //'draft' | 'readyForApproval' | 'approved' | 'rejected';
   disaggregations: Disaggregation[];
 }
 
@@ -40,10 +40,21 @@ const dataSlice = createSlice({
       state.items.push(action.payload);
     },
     updateItem: (state, action: PayloadAction<DataItem>) => {
-      const index = state.items.findIndex(item => item.id === action.payload.id);
-      if (index !== -1) {
-        state.items[index] = action.payload;
-      }
+      //const index = state.items.findIndex(item => item.id === action.payload.id);
+      // if (index !== -1) { state.items[index] = action.payload; }
+      
+      console.log("Update Item: ", action.payload);
+
+      state.items = state.items.map(item => {
+        if (item.id === action.payload.id) {
+          return { ...item, ...action.payload };
+        }
+        return item;
+      });
+
+      state.items = JSON.parse(JSON.stringify(state.items)); // Deep copy to avoid mutation issues
+
+      console.log("Updated Items: ", state.items);
     },
     removeItem: (state, action: PayloadAction<DataItem>) => {
       state.items = state.items.filter(item => item.id !== action.payload.id);
