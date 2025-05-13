@@ -1,12 +1,12 @@
 import Selectors from "../selectors/Selectors";
-import DisplayDataList from "./DisplayDataList";
+import DataListDisplay from "./DataListDisplay";
 
 export default function MainBody() {
   return (
     <main>
       <Selectors />
       <div className="p-2">
-        <DisplayDataList />
+        <DataListDisplay />
       </div>
     </main>
   );
