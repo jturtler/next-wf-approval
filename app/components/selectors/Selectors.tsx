@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import SelectorPeriod from "./SelectorPeriod";
 import SelectorLocation from "./SelectorLocation";
+import SelectorDataEntryToggle from "./SelectorDataEntryToggle";
 
 export default function Selectors() {
 
@@ -17,6 +18,7 @@ export default function Selectors() {
 
         <SelectorLocation/>
 
+        <SelectorDataEntryToggle/>
       </div>
 
     </div>
